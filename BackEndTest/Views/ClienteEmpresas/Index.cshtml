@@ -1,0 +1,70 @@
+﻿@model IEnumerable<BackEndTest.Domain.Entity.ClienteEmpresa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+
+<form asp-controller="ClienteEmpresas" asp-action="IndexFiltro">
+    <p>
+        CPF: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente.CPF)
+            </th>
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.Empresa)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Empresa.Cnpj)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Nome)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.CPF)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa.RazaoSocial)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa.Cnpj)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
