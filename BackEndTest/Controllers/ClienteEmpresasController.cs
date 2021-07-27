@@ -20,18 +20,35 @@ namespace BackEndTest.Controllers
         }
         // POST
 
-        public async Task<IActionResult>IndexFiltro(string searchString)
+        public async Task<IActionResult>IndexFiltro(string searchString,string searchStringName)
         {
-            var clientes = from c in _context.Clientes select c;
+            var clientes = from c in _context.ClienteEmpresas select c;
+
+
             if (!String.IsNullOrEmpty(searchString))
             {
-                clientes = clientes.Where(s => s.CPF.Contains(searchString));
+                clientes = clientes.Where(s => s.Cliente.CPF.Contains(searchString)).Include(c=>c.Cliente).Include(c=>c.Empresa);
 
+                return View(await clientes.ToListAsync());
 
             }
-            return View(await clientes.ToListAsync());
+            //return View(await clientes.ToListAsync());
 
+            if (!String.IsNullOrEmpty(searchStringName))
+            {
+                clientes = clientes.Where(s => s.Cliente.Nome.Contains(searchStringName)).Include(c => c.Cliente).Include(c => c.Empresa);
+                return View(await clientes.ToListAsync());
+            }
+            return View(await clientes.ToListAsync());
         }
+
+
+
+
+
+
+
+
         // GET: ClienteEmpresas
         public async Task<IActionResult> Index()
         {
@@ -167,8 +184,10 @@ namespace BackEndTest.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var clienteEmpresa = await _context.ClienteEmpresas.FindAsync(id);
-            _context.ClienteEmpresas.Remove(clienteEmpresa);
+            //var clienteEmpresa = from c in _context.ClienteEmpresas select c;
+            //clienteEmpresa.Select(c => c.ClienteId);
+            var clienteEmpresa = await _context.Clientes.FindAsync(id);
+            _context.Clientes.Remove(clienteEmpresa);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

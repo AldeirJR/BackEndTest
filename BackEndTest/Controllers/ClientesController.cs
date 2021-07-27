@@ -143,7 +143,7 @@ namespace BackEndTest.Controllers
             var cliente = await _context.Clientes.FindAsync(id);
             _context.Clientes.Remove(cliente);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index","ClienteEmpresas");
         }
 
         private bool ClienteExists(int id)

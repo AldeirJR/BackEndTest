@@ -13,8 +13,17 @@
 <form asp-controller="ClienteEmpresas" asp-action="IndexFiltro">
     <p>
         CPF: <input type="text" name="SearchString" />
-        <input type="submit" value="Filter" />
+        <input type="submit" value="Filtrar" />
     </p>
+
+
+    <p>
+        Nome: <input type="text" name="SearchStringName" />
+        <input type="submit" value="Filtrar" />
+    </p>
+
+
+
 </form>
 
 
@@ -60,9 +69,9 @@
             </td>
 
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
+                <a asp-action="Create" asp-controller="Empresas">Adicionar Empresa</a> |
+                <a asp-action="Delete" asp-route-id="@item.ClienteId" asp-controller="Clientes">Deletar</a>
             </td>
         </tr>
 }

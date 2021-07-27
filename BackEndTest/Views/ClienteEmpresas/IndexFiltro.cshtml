@@ -4,11 +4,8 @@
     ViewData["Title"] = "IndexFiltro";
 }
 
-<h1>IndexFiltro</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -16,8 +13,16 @@
                 @Html.DisplayNameFor(model => model.Cliente)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Cliente.CPF)
+            </th>
+
+            <th>
                 @Html.DisplayNameFor(model => model.Empresa)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empresa.Cnpj)
+            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -25,10 +30,18 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Cliente.Id)
+                @Html.DisplayFor(modelItem => item.Cliente.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Empresa.Id)
+                @Html.DisplayFor(modelItem => item.Cliente.CPF)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa.RazaoSocial)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa.Cnpj)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
