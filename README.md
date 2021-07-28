@@ -1,3 +1,3 @@
 # BackEndTest
 Teste Back End C#
-CRUD básico para registro de clientes/Empresas utilizadan ASP.NET CORE ,EF CORE .
+CRUD básico para registro de clientes/Empresas utilizando ASP.NET CORE ,EF CORE .
